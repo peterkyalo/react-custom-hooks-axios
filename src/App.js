@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
       <h1>
-        {data?.setup} : {data?.delivery}
+        {data?.setup } : {data?.delivery}
       </h1>
         
         <button onClick={refetch}>Refetch</button>

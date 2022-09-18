@@ -1,23 +1,23 @@
-import logo from './logo.svg';
 import './App.css';
+import useFetch from './useFetch';
 
 function App() {
+  const {data, loading, error, refetch} = useFetch("https://v2.jokeapi.dev/joke/Any");//call the custom hook useFetch in any component
+
+  if (loading) {
+    return <h1>Loading...</h1>
+  }
+  if (error) {
+    console.log(error)
+    return <h1>There was an error</h1>
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>
+        {data?.setup} : {data?.delivery}
+      </h1>
+        
+        <button onClick={refetch}>Refetch</button>
     </div>
   );
 }
